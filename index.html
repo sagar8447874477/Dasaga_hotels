@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StayEase — Hotel Booking App</title>
+  <meta name="description" content="Frontend-only hotel booking app demo with dummy data, filters, and booking drawer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="brand" aria-label="StayEase home">
+        <svg viewBox="0 0 48 48" aria-hidden="true" class="brand-mark">
+          <path d="M8 26L24 12L40 26V38H30V28H18V38H8V26Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M16 20H32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <span>StayEase</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#discover">Discover</a>
+        <a href="#stays">Stays</a>
+        <a href="#offers">Offers</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Switch theme"><span class="theme-icon">☾</span></button>
+        <button class="ghost-btn">Sign in</button>
+      </div>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="hero" id="discover">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Weekend escapes, city stays, long holidays</p>
+          <h1>Find a hotel that feels right before you even book it.</h1>
+          <p class="hero-copy">A frontend-only booking experience inspired by modern travel apps — search, compare, shortlist, and preview total cost with smooth UI interactions.</p>
+          <form class="search-panel" id="searchForm">
+            <label>Destination<input type="text" id="destinationInput" value="Goa" placeholder="Goa, Manali, Jaipur" /></label>
+            <label>Check in<input type="date" value="2026-05-02" /></label>
+            <label>Check out<input type="date" value="2026-05-05" /></label>
+            <label>Guests<select><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option></select></label>
+            <button type="submit" class="primary-btn">Search stays</button>
+          </form>
+          <div class="hero-stats" aria-label="App highlights">
+            <article><strong>120+</strong><span>Dummy stays</span></article>
+            <article><strong>4.7/5</strong><span>Average rating</span></article>
+            <article><strong>24×7</strong><span>Guest support UI</span></article>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Featured stay preview">
+          <div class="hero-card-image"></div>
+          <div class="hero-card-content">
+            <p class="card-chip">Editor’s pick</p>
+            <h2>Cliffside Bay Retreat</h2>
+            <p>Ocean-facing suites, infinity pool, airport pickup, breakfast included.</p>
+            <div class="price-row">
+              <div><span class="muted">From</span><strong>₹6,499</strong><span class="muted">/ night</span></div>
+              <button class="secondary-btn" type="button">View rooms</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="filters-section" id="stays">
+      <div class="container filters-wrap">
+        <div class="filters-head">
+          <div><p class="eyebrow">Browse hotels</p><h2>Hotels picked for fast comparison</h2></div>
+          <div class="result-summary" id="resultSummary">Showing 6 stays</div>
+        </div>
+        <div class="filters-bar">
+          <button class="filter-chip active" data-city="All">All</button>
+          <button class="filter-chip" data-city="Goa">Goa</button>
+          <button class="filter-chip" data-city="Manali">Manali</button>
+          <button class="filter-chip" data-city="Jaipur">Jaipur</button>
+          <button class="filter-chip" data-rating="4.5">4.5+ rated</button>
+          <button class="filter-chip" data-price="4500">Under ₹4,500</button>
+          <button class="filter-chip" data-amenity="Breakfast">Breakfast</button>
+        </div>
+        <div class="content-grid">
+          <section><div class="hotel-grid" id="hotelGrid"></div></section>
+          <aside class="booking-panel" id="offers">
+            <p class="eyebrow">Booking summary</p>
+            <h3 id="bookingHotelName">Select a stay</h3>
+            <p class="muted" id="bookingMeta">Choose any hotel card to preview the bill.</p>
+            <div class="summary-box">
+              <div class="summary-row"><span>Room fare</span><strong id="roomFare">₹0</strong></div>
+              <div class="summary-row"><span>Taxes & fees</span><strong id="taxFare">₹0</strong></div>
+              <div class="summary-row total"><span>Total</span><strong id="totalFare">₹0</strong></div>
+            </div>
+            <ul class="perks-list" role="list">
+              <li>Free cancellation for 24 hours</li>
+              <li>Instant confirmation UI state</li>
+              <li>Pay at hotel badge option</li>
+            </ul>
+            <button class="primary-btn full-width" type="button" id="reserveBtn">Reserve now</button>
+            <p class="mini-note">No payment is processed — this is a frontend demo only.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dialog class="hotel-modal" id="hotelModal">
+    <div class="modal-head">
+      <div><p class="eyebrow">Stay details</p><h3 id="modalTitle">Hotel name</h3></div>
+      <button class="icon-btn" id="closeModal" aria-label="Close details">✕</button>
+    </div>
+    <div class="modal-gallery" id="modalGallery"></div>
+    <p class="modal-copy" id="modalCopy"></p>
+    <div class="amenities-wrap" id="modalAmenities"></div>
+  </dialog>
+  <script src="./script.js" defer></script>
+</body>
+</html>
