@@ -1,4 +1,4 @@
-# StayEase Frontend Demo
+# Dsaga Hotels Frontend Demo
 
 A static hotel booking frontend built with HTML, CSS, and JavaScript. It uses dummy hotel data and can be hosted directly on GitHub Pages.
 
